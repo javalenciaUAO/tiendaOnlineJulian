@@ -1,0 +1,3 @@
+1- creacion de los proyectos
+2- limpiar estructura del proyectos
+3- instalar MUI
