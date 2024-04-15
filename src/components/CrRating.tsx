@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 export default function CrRating() {
   const [value, setValue] = React.useState<number | null>(2)
-
+//Este es un comentario
   return (
     <Box
       sx={{
