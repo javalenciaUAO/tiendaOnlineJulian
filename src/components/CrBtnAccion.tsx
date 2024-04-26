@@ -1,19 +1,28 @@
 import { IconButton } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import { useState } from 'react';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
-const CrBtnAccion = () => {
-    const [isCheck, setValor] = useState(true)
+interface Props {
+    isCheck: boolean
+    setValor: () => void
+    handleShow: () => void
+    isShow: boolean
+}
 
-    const handleCheck = () => {
-        setValor(!isCheck)
-    }
-
-    console.log(isCheck)
-
-    return <IconButton onClick={handleCheck}>{isCheck ? <AddShoppingCartIcon 
-        color='primary' /> : <AddTaskIcon color='success' />}</IconButton>
+const CrBtnAccion = ({isCheck, setValor, handleShow, isShow = false }: Props) => {
+    return(
+       <>
+        {isShow ? (
+            <RemoveRedEyeIcon color='primary' onClick={handleShow} />
+        ) : (
+            <>
+            <IconButton onClick={setValor}>{isCheck ? <AddShoppingCartIcon 
+            color='primary' /> : <AddTaskIcon color='success' />}</IconButton>
+            </>
+        )}
+         </>  
+    )
 }
 
 export default CrBtnAccion

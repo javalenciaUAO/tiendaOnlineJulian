@@ -7,9 +7,15 @@ import CrChips from './CrChips';
 import CrRating from './CrRating';
 import { Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
+import { useState } from 'react';
 
 export default function CrCard() {
 
+  const [isCheck, setValor] = useState(true)
+
+  const handleCheck = () => {
+      setValor(!isCheck)
+  }
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -38,8 +44,18 @@ export default function CrCard() {
         </Typography>
         <CrRating />
       </CardContent>
-      <CardActions>
-        <CrBtnAccion/>
+      <CardActions
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <CrBtnAccion isShow isCheck={isCheck} setValor={handleCheck} handleShow={function (): void {
+          throw new Error('Function not implemented.');
+        } } />
+        <CrBtnAccion isCheck={isCheck} setValor={handleCheck} handleShow={function (): void {
+          throw new Error('Function not implemented.');
+        } } isShow={false} />
       </CardActions>
     </Card>
   )
