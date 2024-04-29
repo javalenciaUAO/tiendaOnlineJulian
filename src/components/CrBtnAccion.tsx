@@ -5,23 +5,25 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 interface Props {
     isCheck: boolean
-    setValor: () => void
-    handleShow: () => void
-    isShow: boolean
+    setValor?: () => void
+    handleShow?: () => void
+    isShow?: boolean
 }
 
 const CrBtnAccion = ({isCheck, setValor, handleShow, isShow = false }: Props) => {
     return(
-       <>
+     <>
         {isShow ? (
-            <RemoveRedEyeIcon color='primary' onClick={handleShow} />
+            <IconButton onClick={handleShow}>
+            <RemoveRedEyeIcon color='primary' />
+            </IconButton>
         ) : (
             <>
             <IconButton onClick={setValor}>{isCheck ? <AddShoppingCartIcon 
             color='primary' /> : <AddTaskIcon color='success' />}</IconButton>
             </>
         )}
-         </>  
+     </>  
     )
 }
 
