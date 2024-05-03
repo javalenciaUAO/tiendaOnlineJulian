@@ -2,40 +2,37 @@ import { Box, Container, Grid } from "@mui/material";
 import CrCard from "../components/CrCard";
 import CrNavbar from "../components/CrNavbar";
 import { useEffect, useState } from "react";
-
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-}
-
+import { Product } from "../types/Productos";
 
 const Home = () => {
-    const [data, setdata] = useState([])
-    const [loadin, setLoadin] = useState(false)
+    const [data, setdata] = useState<Product[]>([])
+    const [loadin, setLoadin] = useState<boolean>(false)
+    const [error, setError] = useState(false)
+
+    const handleFetch = async () => {
+        setLoadin(true)
+        try {
+            const data = await fetch('https://fakestoreapi.com/products')
+            const response = await data.json()
+            setdata(response)
+        }catch (error){
+            setError(true)
+        }finally{
+            setLoadin(false)
+        }
+    } 
 
     useEffect(() => {
-        setLoadin(true)
-        fetch('https://fakestoreapi.com/products')
-            .then(res=>res.json())
-            .then(json=>{
-                
-                console.log(json)
-                setdata(json)
-            })
-            .catch((err) => console.log(err))
-            .finally(() => {
-                setLoadin(false)
-                console.log('fetch finalizado')
-            })
+       handleFetch()
     }, [])
+
+    if (error) {
+        return (
+            <div>
+            <h1>Error</h1>    
+            </div>
+        )
+    }
 
     return (
     <>
@@ -53,7 +50,7 @@ const Home = () => {
         <Grid container spacing={2}>
             {data.map((item:Product) => (
             <Grid item key={item.id} xs={12} sm={6} md={4} lg={4} xl={3}>
-                <CrCard imagen={item.image} />
+                <CrCard item={item} />
                 </Grid>
             ))}
             </Grid>

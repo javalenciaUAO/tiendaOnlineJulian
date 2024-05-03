@@ -9,13 +9,14 @@ import { Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
 import { useState } from 'react';
 import CrModal from './CrModal';
+import { Product } from '../types/Productos';
 
 interface Props{
-  imagen: string
+  item: Product
 
 }
 
-export default function CrCard({imagen}:Props) {
+export default function CrCard({item}:Props) {
 
   const [isCheck, setValor] = useState(true)
 
@@ -42,7 +43,7 @@ export default function CrCard({imagen}:Props) {
         <CardMedia 
           sx={{ height: 500 }}
           component={"img"}
-          image={imagen}
+          image={item.image}
           title="Chaqueta de cuero"
           style={{
             width: "200",
@@ -53,7 +54,7 @@ export default function CrCard({imagen}:Props) {
         />
         <CardContent>        
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {item.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
