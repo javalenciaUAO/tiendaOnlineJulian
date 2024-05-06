@@ -1,13 +1,17 @@
 import { Box, Container, Grid } from "@mui/material";
 import CrCard from "../components/CrCard";
-import CrNavbar from "../components/CrNavbar";
 import { useEffect, useState } from "react";
 import { Product } from "../types/Productos";
+import HomeLayaout from "./layaout/HomeLayaout";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
     const [data, setdata] = useState<Product[]>([])
     const [loadin, setLoadin] = useState<boolean>(false)
     const [error, setError] = useState(false)
+    const location = useLocation();
+
+    console.log(location.pathname)
 
     const handleFetch = async () => {
         setLoadin(true)
@@ -35,8 +39,7 @@ const Home = () => {
     }
 
     return (
-    <>
-    <CrNavbar />
+    <HomeLayaout>
     <Container maxWidth='lg'>
     <Box sx ={{
         display: 'flex',
@@ -57,8 +60,8 @@ const Home = () => {
         )}
         </Box>
         </Container>
-        </>
+        </HomeLayaout>
         )
     }
 
-export default Home;
+export default Home

@@ -10,25 +10,27 @@ import CrBtnAccion from './CrBtnAccion';
 import { useState } from 'react';
 import CrModal from './CrModal';
 import { Product } from '../types/Productos';
+import { useHistory } from 'react-router-dom';
 
 interface Props{
   item: Product
-
 }
 
-export default function CrCard({item}:Props) {
-
+export default function CrCard({ item }:Props) {
   const [isCheck, setValor] = useState(true)
+  const [open, setOpen] = useState(false)
 
-  const [open, setOpen] = useState(false);
+  const history = useHistory()
 
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+
+    history.push(`/detalles/${item.id}`)
+  }
 
   const handleCheck = () => {
       setValor(!isCheck)

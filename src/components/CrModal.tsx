@@ -32,7 +32,7 @@ export default function CrModal({ open, handleClose }: Props){
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Ver detalle
           </Button>
         </DialogActions>
       </Dialog>
